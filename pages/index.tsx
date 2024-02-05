@@ -7,12 +7,16 @@ import {
   CardBody,
   Heading,
   CardHeader,
+  ColorModeScript,
 } from '@chakra-ui/react';
 import {
   DeepClient,
 } from '@deep-foundation/deeplinks/imports/client';
 import { NavBar } from '../src/react/components/navbar';
 import { Page } from '../src/react/components/page';
+import { Panel } from '../imports/panel';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react'
+import {  MultiSelectTheme } from 'chakra-multiselect';
 
 interface ContentParam {
   deep: DeepClient;
@@ -37,13 +41,25 @@ function Content({ deep }: ContentParam) {
   );
 }
 
+const theme = extendTheme({
+  components: {
+    MultiSelect: MultiSelectTheme
+  }
+});
+
 export default function IndexPage() {
+  // return (
+  //   <Page
+  //     renderChildren={({ deep }) => (
+  //       <Content deep={deep} />
+  //     )}
+  //   />
+  // );
   return (
-    <Page
-      renderChildren={({ deep }) => (
-        <Content deep={deep} />
-      )}
-    />
+    <ChakraProvider theme={theme}>
+      <ColorModeScript initialColorMode='light' />
+      <Panel/>
+    </ChakraProvider>
   );
 }
 
