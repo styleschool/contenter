@@ -69,6 +69,9 @@ export function Column({
                         flex={0} variant="outline"
                         onClick={() => {
                             if (confirm(`Sure delete ${l}?`)) {
+                                if (selected[index] === i) {
+                                    setSelected(selected.map((s, ii) => ii === index ? i - 1 || 0 : s));
+                                }
                                 _lists[1](_lists[0].map((l, ii) => ii === index ? { ...l, list: l.list.filter((f, iii) => iii !== i) } : l));
                             }
                         }}
