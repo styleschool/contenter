@@ -6,6 +6,12 @@ const withNextEnv = nextEnv();
 
  /** @type {import('next').NextConfig}*/
 const config =  {
+  output: "export",
+  basePath: "/contenter",
+  images: {
+    unoptimized: true,
+  },
+
   distDir: 'app',
   strictMode: false,
   
