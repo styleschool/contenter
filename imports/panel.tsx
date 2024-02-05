@@ -67,9 +67,20 @@ export function Column({
                     >{l}</Button>
                     <Button
                         flex={0} variant="outline"
-                        onClick={() => _lists[1](_lists[0].map((l, ii) => ii === index ? { ...l, list: l.list.filter((f, iii) => iii !== i) } : l))}
+                        onClick={() => {
+                            if (confirm(`Sure delete ${l}?`)) {
+                                _lists[1](_lists[0].map((l, ii) => ii === index ? { ...l, list: l.list.filter((f, iii) => iii !== i) } : l));
+                            }
+                        }}
                     >x</Button>
                 </Flex>)}
+                <Button
+                    variant="outline" w={'100%'}
+                    onClick={() => {
+                        _lists[1](_lists[0].map((l, ii) => ii === index ? { ...l, list: [...l.list, 'new'] } : l));
+                        setSelected(selected.map((s, ii) => ii === index ? _lists[0][index].list.length : s));
+                    }}
+                >+</Button>
             </Box>
         </Flex>
     </Box>
