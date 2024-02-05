@@ -28,7 +28,7 @@ export function Column({
     _selected: [number[], Dispatch<SetStateAction<number[]>>];
     index: number;
 }) {
-    const [value, setValue] = useState(_users);
+    const [value, setValue]: any = useState(_users);
     const [templateTab, setTemplateTab] = useState(templateTabs[0]);
 
     return <Box w='300px' h='100%' bg='white'>
@@ -38,7 +38,6 @@ export function Column({
                     options={options}
                     value={value}
                     onChange={setValue}
-                    borderSize={0}
                 />
                 {!!_list[selected[index - 1]] && <Input
                     placeholder='Contain name'
