@@ -1,16 +1,20 @@
 import nextEnv from 'next-env';
 import dotenvLoad from 'dotenv-load';
+import { PHASE_DEVELOPMENT_SERVER } from 'next/constants.js';
+
 dotenvLoad();
  
 const withNextEnv = nextEnv();
 
  /** @type {import('next').NextConfig}*/
-const config =  {
-  output: "export",
-  basePath: "/contenter",
-  images: {
-    unoptimized: true,
-  },
+const config = (phase, { defaultConfig }) => (console.log('phase', phase, 'PHASE_DEVELOPMENT_SERVER', PHASE_DEVELOPMENT_SERVER), {
+  ...(phase !== PHASE_DEVELOPMENT_SERVER ? {
+    output: "export",
+    basePath: "/contenter",
+    images: {
+      unoptimized: true,
+    },
+  } : {}),
 
   distDir: 'app',
   strictMode: false,
@@ -33,6 +37,6 @@ const config =  {
 
     return config;
   },
-}
+})
 
 export default withNextEnv(config);

@@ -65,7 +65,10 @@ export function Column({
                         variant={i === selected[index] ? 'solid' : 'outlined'} flex={1} p={3} w="100%"
                         onClick={() => setSelected(selected.map((s, ii) => ii === index ? i : s))}
                     >{l}</Button>
-                    <Button flex={0} variant="outline">x</Button>
+                    <Button
+                        flex={0} variant="outline"
+                        onClick={() => _lists[1](_lists[0].map((l, ii) => ii === index ? { ...l, list: l.list.filter((f, iii) => iii !== i) } : l))}
+                    >x</Button>
                 </Flex>)}
             </Box>
         </Flex>
